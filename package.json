@@ -1,0 +1,20 @@
+{
+  "name": "ai-portfolio-manager",
+  "version": "1.0.0",
+  "description": "AI-powered investment management system with insider transaction analysis",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "googleapis": "^140.0.0"
+  },
+  "devDependencies": {
+    "vercel": "^34.0.0"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}
