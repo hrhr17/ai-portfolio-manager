@@ -1,0 +1,30 @@
+{
+  "financeResearch": [
+    {
+      "account": "@sample_researcher",
+      "reason": "Long-form equity research and primary-source references",
+      "sourceQuality": "high_signal"
+    },
+    {
+      "account": "@sample_filings",
+      "reason": "Filing and disclosure alerts",
+      "sourceQuality": "trusted"
+    }
+  ],
+  "generalIntelligence": [
+    {
+      "account": "@sample_builder",
+      "reason": "AI tooling, workflows, and startup ideas",
+      "sourceQuality": "unknown"
+    },
+    {
+      "account": "@sample_operator",
+      "reason": "Business, revenue, and go-to-market ideas",
+      "sourceQuality": "high_signal"
+    }
+  ],
+  "notes": [
+    "These are examples only.",
+    "Do not store X credentials, OAuth secrets, bearer tokens, access tokens, or refresh tokens in this file."
+  ]
+}

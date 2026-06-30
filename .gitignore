@@ -2,3 +2,33 @@ node_modules/
 .env
 .env.local
 .vercel
+
+# Local environment and secrets
+.env.*
+!.env.example
+*.env
+*.secret
+*.secrets
+secrets/
+credentials/
+private/
+
+# Local editor/tool credentials
+.cursor/mcp.json
+.xurl/
+*mcp*token*
+*mcp*cache*
+*x*token*
+*twitter*token*
+
+# Google service-account and other credential files
+*service-account*.json
+*service_account*.json
+*credentials*.json
+*credential*.json
+google-*.json
+*.pem
+*.key
+*.p8
+id_rsa
+id_ed25519
