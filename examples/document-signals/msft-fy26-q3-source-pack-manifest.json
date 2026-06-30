@@ -1,0 +1,148 @@
+{
+  "manifest_name": "msft_fy26_q3_manual_source_pack",
+  "manifest_version": "0.1.0",
+  "ticker": "MSFT",
+  "company": "Microsoft Corporation",
+  "fiscal_period": "FY26 Q3",
+  "source_pack_title": "FY26q3-zip.zip",
+  "source_pack_file_id": "1dfP8xXMdw0YRnvvPisnZxdpNftc1_adu",
+  "storage_location_note": "Google Drive manual upload; public Drive URL intentionally not committed",
+  "real_documents_committed_to_repo": false,
+  "allowed_action": "research_only",
+  "can_directly_trade": false,
+  "required_verification_template": [
+    "confirm document source",
+    "confirm publication date",
+    "confirm market availability timestamp",
+    "confirm text extraction quality",
+    "confirm no paid/proprietary content restrictions"
+  ],
+  "files": [
+    {
+      "expected_filename": "PressReleaseFY26Q3.docx",
+      "source_type": "earnings_release",
+      "role": "core_v0_source",
+      "source_url": null,
+      "source_label": "manual_drive_source_pack",
+      "source_date": null,
+      "available_at": null,
+      "captured_at": null,
+      "intended_use": "Primary company-published earnings release source for future research-only signal extraction.",
+      "required_verification": [
+        "confirm document source",
+        "confirm publication date",
+        "confirm market availability timestamp",
+        "confirm text extraction quality",
+        "confirm no paid/proprietary content restrictions"
+      ]
+    },
+    {
+      "expected_filename": "MSFT_FY26Q3_10Q.docx",
+      "source_type": "quarterly_report_10q",
+      "role": "core_v0_source",
+      "source_url": null,
+      "source_label": "manual_drive_source_pack",
+      "source_date": null,
+      "available_at": null,
+      "captured_at": null,
+      "intended_use": "Primary quarterly filing source for future MD&A, risk factor, and accounting-quality research signals.",
+      "required_verification": [
+        "confirm document source",
+        "confirm publication date",
+        "confirm market availability timestamp",
+        "confirm text extraction quality",
+        "confirm no paid/proprietary content restrictions"
+      ]
+    },
+    {
+      "expected_filename": "TranscriptFY26Q3.docx",
+      "source_type": "earnings_call_transcript",
+      "role": "core_v0_source",
+      "source_url": null,
+      "source_label": "manual_drive_source_pack",
+      "source_date": null,
+      "available_at": null,
+      "captured_at": null,
+      "intended_use": "Primary management commentary source for future research-only signal extraction.",
+      "required_verification": [
+        "confirm document source",
+        "confirm publication date",
+        "confirm market availability timestamp",
+        "confirm text extraction quality",
+        "confirm no paid/proprietary content restrictions"
+      ]
+    },
+    {
+      "expected_filename": "FinancialStatementFY26Q3.xlsx",
+      "source_type": "financial_statement_workbook",
+      "role": "supporting_context",
+      "source_url": null,
+      "source_label": "manual_drive_source_pack",
+      "source_date": null,
+      "available_at": null,
+      "captured_at": null,
+      "intended_use": "Supporting financial-statement context only; not a direct trade or allocation input.",
+      "required_verification": [
+        "confirm document source",
+        "confirm publication date",
+        "confirm market availability timestamp",
+        "confirm text extraction quality",
+        "confirm no paid/proprietary content restrictions"
+      ]
+    },
+    {
+      "expected_filename": "Metrics_FY26Q3.xlsx",
+      "source_type": "metrics_workbook",
+      "role": "supporting_context",
+      "source_url": null,
+      "source_label": "manual_drive_source_pack",
+      "source_date": null,
+      "available_at": null,
+      "captured_at": null,
+      "intended_use": "Supporting operating and financial metric context only; not a direct trade or allocation input.",
+      "required_verification": [
+        "confirm document source",
+        "confirm publication date",
+        "confirm market availability timestamp",
+        "confirm text extraction quality",
+        "confirm no paid/proprietary content restrictions"
+      ]
+    },
+    {
+      "expected_filename": "SlidesFY26Q3.pptx",
+      "source_type": "investor_presentation",
+      "role": "supporting_context",
+      "source_url": null,
+      "source_label": "manual_drive_source_pack",
+      "source_date": null,
+      "available_at": null,
+      "captured_at": null,
+      "intended_use": "Supporting investor-presentation context only; not a direct trade or allocation input.",
+      "required_verification": [
+        "confirm document source",
+        "confirm publication date",
+        "confirm market availability timestamp",
+        "confirm text extraction quality",
+        "confirm no paid/proprietary content restrictions"
+      ]
+    },
+    {
+      "expected_filename": "OutlookFY26Q4.pptx",
+      "source_type": "guidance_outlook_presentation",
+      "role": "supporting_context",
+      "source_url": null,
+      "source_label": "manual_drive_source_pack",
+      "source_date": null,
+      "available_at": null,
+      "captured_at": null,
+      "intended_use": "Supporting guidance and outlook context only; not a direct trade or allocation input.",
+      "required_verification": [
+        "confirm document source",
+        "confirm publication date",
+        "confirm market availability timestamp",
+        "confirm text extraction quality",
+        "confirm no paid/proprietary content restrictions"
+      ]
+    }
+  ]
+}
