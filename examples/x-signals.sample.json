@@ -1,0 +1,24 @@
+{
+  "date": "2026-06-30",
+  "source": "manual_bookmark_batch",
+  "posts": [
+    {
+      "source": "x_bookmark",
+      "sourceAccount": "@sample_researcher",
+      "sourceUrl": "https://x.example/sample/nvda-ai-demand",
+      "rawText": "$NVDA checks suggest hyperscaler AI accelerator demand remains strong into earnings. Verify with filings, channel data, and valuation."
+    },
+    {
+      "source": "x_bookmark",
+      "sourceAccount": "@sample_builder",
+      "sourceUrl": "https://x.example/sample/codex-workflow",
+      "rawText": "New Codex workflow idea: save reusable agent checklists for PR verification, deployment notes, and no-secret audits."
+    },
+    {
+      "source": "x_bookmark",
+      "sourceAccount": "@sample_promo",
+      "sourceUrl": "https://x.example/sample/100x-alert",
+      "rawText": "100x guaranteed alert. Join paid group now. No need to research."
+    }
+  ]
+}

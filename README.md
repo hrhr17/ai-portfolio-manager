@@ -25,6 +25,7 @@ Every recommendation is paper-only and should be reviewed by a human.
 /api/health
 /api/daily-investment-committee
 /api/smart-money-analyst
+/api/x-intake
 ```
 
 The existing Vercel cron still points to:
@@ -74,6 +75,8 @@ The report includes:
 - Executive Summary
 - New Signals
 - X/Social/Bookmark Signals
+- X / Social Signal Desk
+- Henry X Intelligence Brief
 - Research Queue
 - Approved Paper Trades
 - Rejected Ideas and Why
@@ -111,6 +114,7 @@ Optional:
 PAPER_PORTFOLIO_JSON
 PAPER_PORTFOLIO_HISTORY_JSON
 X_SOURCE_MOCK_SIGNALS
+X_INTAKE_SECRET
 MAX_SINGLE_POSITION_TARGET_WEIGHT_PCT
 MAX_NEW_POSITIONS_PER_DAY
 MAX_DAILY_TURNOVER_PCT
@@ -152,9 +156,117 @@ The health endpoint returns project status, version, configured env var names, a
 
 ## X / Social Integration
 
-X integration is currently a placeholder/source-intake layer only.
+X integration is currently a mock/manual source-intake layer only.
 
-The interface is prepared for future monitored accounts, bookmarks, lists, cashtags, unusual-alert accounts, and trader/researcher accounts. It does not authenticate to X today, and X/social inputs are not allowed to create trades directly.
+The interface is prepared for future X MCP or direct X API ingestion, but this repo does not authenticate to X today and does not require X `CLIENT_ID`, `CLIENT_SECRET`, bearer tokens, access tokens, or refresh tokens.
+
+Current v0 source priority:
+
+1. User bookmarks
+2. User-provided monitored accounts
+3. User-provided X lists
+4. Keyword/cashtag searches
+5. General feed/following only as future discovery
+
+There are two separate use cases:
+
+- General Henry X Intelligence Hub: useful AI tools, startups, business ideas, revenue opportunities, learning resources, workflows, Codex/ChatGPT improvements, content ideas, and things worth ignoring.
+- AI Portfolio Manager X Signal Desk: finance-relevant signals only. These become research tasks, watchlist items, or report notes.
+
+X/social inputs are idea-generation inputs only. They are not a trading engine. They can never directly create BUY or SELL recommendations.
+
+Any investment idea sourced from X must still pass:
+
+```text
+Signal Scout -> Equity Research -> Skeptic -> Portfolio Manager -> Risk Engine
+```
+
+The normalizer classifies each X/social signal with:
+
+```text
+source
+sourceAccount
+sourceUrl
+capturedAt
+rawText
+tickers
+companies
+people
+themes
+signalType
+category
+claim
+initialConfidence
+sourceQuality
+signalStrength
+actionabilityScore
+verificationNeeded
+primarySourceNeeded
+requiredVerification
+recommendedNextStep
+relatedTickers
+relatedThemes
+timeSensitivity
+projectTags
+status
+```
+
+Supported categories:
+
+```text
+insider_trading
+politician_trading
+unusual_options_flow
+equity_research
+macro
+earnings_catalyst
+valuation
+copy_trade_alert
+company_news
+ai_tool_or_workflow
+business_opportunity
+startup_to_watch
+content_idea
+watchlist
+noise
+```
+
+Supported outcomes:
+
+```text
+ignore
+watch
+send_to_research
+send_to_skeptic
+add_to_report
+add_to_general_intelligence_brief
+```
+
+### Manual X Intake
+
+`/api/x-intake` accepts a small manual batch of copied X posts/bookmarks and normalizes them into structured signals. It is protected by `X_INTAKE_SECRET` if present, otherwise by `CRON_SECRET`.
+
+Example request body:
+
+```json
+{
+  "source": "manual_bookmark_batch",
+  "posts": [
+    {
+      "sourceAccount": "@sample_researcher",
+      "sourceUrl": "https://x.example/sample/nvda-ai-demand",
+      "rawText": "$NVDA checks suggest hyperscaler AI accelerator demand remains strong into earnings."
+    }
+  ]
+}
+```
+
+Example files:
+
+```text
+examples/x-signals.sample.json
+examples/monitored-x-accounts.sample.json
+```
 
 ## File Map
 
@@ -162,6 +274,7 @@ The interface is prepared for future monitored accounts, bookmarks, lists, casht
 api/daily-investment-committee.js
 api/smart-money-analyst.js
 api/health.js
+api/x-intake.js
 lib/agents/dataAgent.js
 lib/agents/signalScoutAgent.js
 lib/agents/equityResearchAgent.js

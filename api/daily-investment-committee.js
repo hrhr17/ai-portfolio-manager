@@ -1,4 +1,5 @@
 const { collectDailyInputs } = require("../lib/agents/dataAgent");
+const { buildHenryIntelligenceBrief, buildXSignalDesk } = require("../lib/sources/xSourceAgent");
 const { buildResearchQueue } = require("../lib/agents/signalScoutAgent");
 const { researchCandidates } = require("../lib/agents/equityResearchAgent");
 const { challengeTheses } = require("../lib/agents/skepticAgent");
@@ -147,6 +148,8 @@ function buildDryRunPipelineOutputs(result) {
       docUrl: result.docUrl,
       reportPreview: result.reportBody.slice(0, 4000),
     },
+    xSocialSignalDesk: buildXSignalDesk(result.inputs.raw.xSocialSignals),
+    henryXIntelligenceBrief: buildHenryIntelligenceBrief(result.inputs.raw.xSocialSignals),
     postMortemAgent: result.postMortemOutput,
     paperPortfolio: {
       startingPortfolio: result.startingPortfolio,

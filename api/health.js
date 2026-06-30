@@ -17,6 +17,7 @@ const OPTIONAL_ENV_VARS = [
   "PAPER_PORTFOLIO_JSON",
   "PAPER_PORTFOLIO_HISTORY_JSON",
   "X_SOURCE_MOCK_SIGNALS",
+  "X_INTAKE_SECRET",
   "MAX_SINGLE_POSITION_TARGET_WEIGHT_PCT",
   "MAX_NEW_POSITIONS_PER_DAY",
   "MAX_DAILY_TURNOVER_PCT",
@@ -43,6 +44,7 @@ module.exports = async function handler(req, res) {
       health: "/api/health",
       dailyInvestmentCommittee: "/api/daily-investment-committee",
       legacyCronDelegate: "/api/smart-money-analyst",
+      xIntake: "/api/x-intake",
     },
     cron: {
       path: "/api/smart-money-analyst",
