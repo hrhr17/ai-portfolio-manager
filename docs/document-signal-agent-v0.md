@@ -147,6 +147,19 @@ Smallest useful implementation path:
 8. Do not add automated SEC ingestion unless it is trivial, free, and separately approved.
 9. Do not change paper-trade behavior or portfolio allocation.
 
+## Current v0 Dry-Run Prototype
+
+The first runnable prototype is intentionally small and deterministic:
+
+- Reads only the committed synthetic MSFT fixture at `examples/document-signals/msft-sample-documents.json`.
+- Normalizes fixture metadata into research-only document signal records.
+- Uses deterministic fixture rules in `lib/agents/documentSignalAgent.js`.
+- Runs from `npm run --silent document-signals:dry-run` for clean JSON stdout.
+- Validates shape and safety with `npm run document-signals:validate`.
+- Does not use LLMs, prompts, live APIs, Google Drive, production storage, reports, portfolio state, or cron.
+- Does not ingest the real MSFT FY26 Q3 source pack.
+- Does not create BUY, SELL, HOLD, allocation, order, broker, or execution instructions.
+
 ## v0 Planning Decisions
 
 First sample set:

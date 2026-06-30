@@ -388,6 +388,47 @@ examples/x-signals.sample.json
 examples/monitored-x-accounts.sample.json
 ```
 
+## Document Signal Agent v0 Dry Run
+
+Document Signal Agent v0 is a synthetic-fixture-only prototype. It reads the committed MSFT sample documents, normalizes them into research-only document signal records, and prints deterministic JSON.
+
+Run:
+
+```text
+npm run --silent document-signals:dry-run
+```
+
+Validate the dry-run shape:
+
+```text
+npm run document-signals:validate
+```
+
+The normalized schema and validation guardrails live in:
+
+```text
+lib/agents/documentSignalAgent.js
+```
+
+Current boundaries:
+
+- Uses only `examples/document-signals/msft-sample-documents.json`.
+- Does not call LLMs.
+- Does not call live APIs.
+- Does not fetch Google Drive files.
+- Does not ingest the real MSFT FY26 Q3 source pack yet.
+- Does not write reports, portfolio state, production storage, or Google Drive documents.
+- Does not create BUY, SELL, HOLD, allocation, order, broker, or execution instructions.
+- Emits research-only signals that require human review.
+
+The real MSFT FY26 Q3 source pack is represented only by a metadata manifest:
+
+```text
+examples/document-signals/msft-fy26-q3-source-pack-manifest.json
+```
+
+Real Drive ingestion, DOCX/XLSX/PPTX parsing, LLM scoring, report writing, and portfolio integration are later PRs.
+
 ## File Map
 
 ```text
@@ -395,6 +436,7 @@ api/daily-investment-committee.js
 api/smart-money-analyst.js
 api/health.js
 api/x-intake.js
+lib/agents/documentSignalAgent.js
 lib/agents/dataAgent.js
 lib/agents/signalScoutAgent.js
 lib/agents/equityResearchAgent.js
@@ -414,6 +456,8 @@ lib/utils/fetchInsiders.js
 lib/utils/fetchFundamentals.js
 lib/utils/sampleData.js
 lib/utils/writeToDrive.js
+scripts/documentSignalsDryRun.js
+scripts/validateDocumentSignals.js
 ```
 
 Only actual HTTP endpoints live under `api/`. Shared modules live under `lib/` so Vercel does not deploy each helper as a separate serverless function.
