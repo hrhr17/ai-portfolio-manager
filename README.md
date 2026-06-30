@@ -390,7 +390,19 @@ examples/monitored-x-accounts.sample.json
 
 ## Document Signal Agent v0 Dry Run
 
-Document Signal Agent v0 is a synthetic-fixture-only prototype. It reads the committed MSFT sample documents, normalizes them into research-only document signal records, and prints deterministic JSON.
+Document Signal Agent v0.1 is a synthetic-fixture-only prototype. It reads the committed MSFT sample documents, extracts source-like document records and sections, normalizes them into research-only document signal records, and prints deterministic JSON.
+
+Current flow:
+
+```text
+synthetic fixture records -> extracted document records -> section records -> normalized research-only signals
+```
+
+Inspect the extraction layer only:
+
+```text
+npm run --silent document-signals:extract-dry-run
+```
 
 Run:
 
@@ -408,15 +420,18 @@ The normalized schema and validation guardrails live in:
 
 ```text
 lib/agents/documentSignalAgent.js
+lib/agents/documentSourceExtractor.js
 ```
 
 Current boundaries:
 
 - Uses only `examples/document-signals/msft-sample-documents.json`.
+- Extracts sections deterministically from synthetic fixture metadata and excerpts.
 - Does not call LLMs.
 - Does not call live APIs.
 - Does not fetch Google Drive files.
 - Does not ingest the real MSFT FY26 Q3 source pack yet.
+- Does not parse DOCX, XLSX, PPTX, or PDF files yet.
 - Does not write reports, portfolio state, production storage, or Google Drive documents.
 - Does not create BUY, SELL, HOLD, allocation, order, broker, or execution instructions.
 - Emits research-only signals that require human review.
@@ -437,6 +452,7 @@ api/smart-money-analyst.js
 api/health.js
 api/x-intake.js
 lib/agents/documentSignalAgent.js
+lib/agents/documentSourceExtractor.js
 lib/agents/dataAgent.js
 lib/agents/signalScoutAgent.js
 lib/agents/equityResearchAgent.js
@@ -456,6 +472,7 @@ lib/utils/fetchInsiders.js
 lib/utils/fetchFundamentals.js
 lib/utils/sampleData.js
 lib/utils/writeToDrive.js
+scripts/documentSourcesExtractDryRun.js
 scripts/documentSignalsDryRun.js
 scripts/validateDocumentSignals.js
 ```

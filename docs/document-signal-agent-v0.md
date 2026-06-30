@@ -149,16 +149,54 @@ Smallest useful implementation path:
 
 ## Current v0 Dry-Run Prototype
 
-The first runnable prototype is intentionally small and deterministic:
+The first runnable prototype is intentionally small and deterministic. v0.1 adds an intermediate source extraction layer:
+
+```text
+synthetic fixture records -> extracted document records -> section records -> normalized research-only signals
+```
 
 - Reads only the committed synthetic MSFT fixture at `examples/document-signals/msft-sample-documents.json`.
-- Normalizes fixture metadata into research-only document signal records.
+- Extracts source-like document records and section records with `lib/agents/documentSourceExtractor.js`.
+- Normalizes extracted sections into research-only document signal records.
 - Uses deterministic fixture rules in `lib/agents/documentSignalAgent.js`.
+- Runs source extraction from `npm run --silent document-signals:extract-dry-run`.
 - Runs from `npm run --silent document-signals:dry-run` for clean JSON stdout.
 - Validates shape and safety with `npm run document-signals:validate`.
 - Does not use LLMs, prompts, live APIs, Google Drive, production storage, reports, portfolio state, or cron.
 - Does not ingest the real MSFT FY26 Q3 source pack.
+- Does not parse DOCX, XLSX, PPTX, or PDF files.
 - Does not create BUY, SELL, HOLD, allocation, order, broker, or execution instructions.
+
+Current extraction output shape:
+
+```json
+{
+  "schema_version": "document_source_extraction_v0_1",
+  "mode": "synthetic_fixture_source_extraction",
+  "documents": [
+    {
+      "source_document_id": "synthetic-q2-earnings-release-excerpt",
+      "ticker": "MSFT",
+      "source_type": "earnings_release",
+      "source_date": "2026-01-30",
+      "available_at": "2026-01-30T21:05:00Z",
+      "synthetic": true,
+      "not_real_market_data": true,
+      "sections": [
+        {
+          "section_id": "synthetic-q2-earnings-release-excerpt-revenue-demand",
+          "heading": "Revenue / Demand",
+          "locator": "documents[0].expected_signal_types[0]"
+        }
+      ],
+      "allowed_action": "research_only",
+      "can_directly_trade": false
+    }
+  ]
+}
+```
+
+Next planned step after v0.1: add a reviewed local text extraction fixture that more closely resembles pasted or manually uploaded documents, still without real Google Drive ingestion, binary file parsing, LLM scoring, report writing, or portfolio impact.
 
 ## v0 Planning Decisions
 
