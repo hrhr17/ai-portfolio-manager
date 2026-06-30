@@ -218,12 +218,12 @@ EODHD_API_KEY
 FINNHUB_API_KEY
 GOOGLE_SERVICE_ACCOUNT_JSON
 GOOGLE_DRIVE_FOLDER_ID
+CRON_SECRET
 ```
 
 Recommended:
 
 ```text
-CRON_SECRET
 WATCHLIST_TICKERS
 RESEARCH_QUEUE_LIMIT
 ```
@@ -250,10 +250,10 @@ Dry run mode is for safe review. It uses sample data and does not call EODHD, Fi
 /api/daily-investment-committee?dryRun=true
 ```
 
-If `CRON_SECRET` is configured, include the same authorization header used by the cron:
+Manual dry runs require the same authorization header used by the cron:
 
 ```text
-Authorization: Bearer YOUR_CRON_SECRET
+Authorization: Bearer <CRON_SECRET>
 ```
 
 Dry runs return JSON with pipeline outputs from each agent and a report preview.

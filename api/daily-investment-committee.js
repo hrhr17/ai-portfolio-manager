@@ -191,7 +191,7 @@ function buildDryRunPipelineOutputs(result) {
 
 function isAuthorized(req) {
   const cronSecret = process.env.CRON_SECRET;
-  if (!cronSecret) return true;
+  if (!cronSecret) return false;
 
   const authHeader = req.headers?.authorization || req.headers?.Authorization || "";
   return authHeader === `Bearer ${cronSecret}`;

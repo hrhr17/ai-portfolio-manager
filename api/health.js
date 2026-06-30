@@ -1,6 +1,7 @@
 const pkg = require("../package.json");
 
 const REQUIRED_ENV_VARS = [
+  "CRON_SECRET",
   "EODHD_API_KEY",
   "FINNHUB_API_KEY",
   "GOOGLE_SERVICE_ACCOUNT_JSON",
@@ -8,7 +9,6 @@ const REQUIRED_ENV_VARS = [
 ];
 
 const RECOMMENDED_ENV_VARS = [
-  "CRON_SECRET",
   "WATCHLIST_TICKERS",
   "RESEARCH_QUEUE_LIMIT",
 ];
