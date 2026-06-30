@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vercel dev",
     "deploy": "vercel --prod",
+    "document-signals:extract-dry-run": "node scripts/documentSourcesExtractDryRun.js",
     "document-signals:dry-run": "node scripts/documentSignalsDryRun.js",
     "document-signals:validate": "node scripts/validateDocumentSignals.js",
     "test": "npm run document-signals:validate"
