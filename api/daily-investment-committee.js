@@ -6,6 +6,10 @@ const { challengeTheses } = require("../lib/agents/skepticAgent");
 const { buildPaperRecommendations } = require("../lib/agents/portfolioManagerAgent");
 const { buildDailyCommitteeReport, writeCommitteeReport } = require("../lib/agents/reportingAgent");
 const { runPostMortemReview } = require("../lib/agents/postMortemAgent");
+const { buildQuantResearchRoadmap } = require("../lib/agents/quantResearchAgent");
+const { runBacktestValidationReview } = require("../lib/agents/backtestValidationAgent");
+const { reviewModelRisk } = require("../lib/agents/modelRiskAgent");
+const { runMonitoringReview } = require("../lib/agents/monitoringAgent");
 const { runRiskReview } = require("../lib/risk/riskEngine");
 const { loadPaperPortfolioSnapshot, applyPaperRecommendations } = require("../lib/portfolio/paperPortfolio");
 
@@ -50,6 +54,15 @@ async function runDailyInvestmentCommittee({ date, writeReport = true, useSample
   const startingPortfolio = loadPaperPortfolioSnapshot();
   const inputs = await collectDailyInputs({ date: runDate, useSampleData });
   const scoutOutput = buildResearchQueue(inputs);
+  const quantResearchOutput = buildQuantResearchRoadmap({ inputs, scoutOutput });
+  const backtestValidationOutput = runBacktestValidationReview(quantResearchOutput);
+  const modelRiskOutput = reviewModelRisk(quantResearchOutput, backtestValidationOutput);
+  const monitoringOutput = runMonitoringReview({
+    inputs,
+    quantResearchOutput,
+    backtestValidationOutput,
+    modelRiskOutput,
+  });
   const researchOutput = await researchCandidates(scoutOutput.researchQueue, { useSampleData });
   const skepticOutput = challengeTheses(researchOutput.theses);
   const portfolioOutput = buildPaperRecommendations(skepticOutput.reviewedTheses, startingPortfolio);
@@ -65,6 +78,10 @@ async function runDailyInvestmentCommittee({ date, writeReport = true, useSample
     date: runDate,
     inputs,
     scoutOutput,
+    quantResearchOutput,
+    backtestValidationOutput,
+    modelRiskOutput,
+    monitoringOutput,
     researchOutput,
     skepticOutput,
     portfolioOutput,
@@ -79,6 +96,10 @@ async function runDailyInvestmentCommittee({ date, writeReport = true, useSample
   const auditTrail = [
     ...inputs.auditTrail,
     ...scoutOutput.auditTrail,
+    ...quantResearchOutput.auditTrail,
+    ...backtestValidationOutput.auditTrail,
+    ...modelRiskOutput.auditTrail,
+    ...monitoringOutput.auditTrail,
     ...researchOutput.auditTrail,
     ...skepticOutput.auditTrail,
     ...portfolioOutput.auditTrail,
@@ -93,6 +114,10 @@ async function runDailyInvestmentCommittee({ date, writeReport = true, useSample
     reportBody,
     inputs,
     scoutOutput,
+    quantResearchOutput,
+    backtestValidationOutput,
+    modelRiskOutput,
+    monitoringOutput,
     researchOutput,
     skepticOutput,
     portfolioOutput,
@@ -104,6 +129,8 @@ async function runDailyInvestmentCommittee({ date, writeReport = true, useSample
     summary: {
       insiderTransactions: inputs.raw.insiderTransactions.length,
       xSocialSignals: inputs.raw.xSocialSignals.length,
+      quantHypotheses: quantResearchOutput.hypotheses.length,
+      factorBacklog: quantResearchOutput.factorBacklog.length,
       researchTasks: scoutOutput.researchQueue.length,
       researchedTheses: researchOutput.theses.length,
       recommendations: portfolioOutput.recommendations.length,
@@ -131,6 +158,10 @@ function buildDryRunPipelineOutputs(result) {
       theses: result.researchOutput.theses,
       skippedTasks: result.researchOutput.skippedTasks,
     },
+    quantResearchAgent: result.quantResearchOutput,
+    backtestValidationAgent: result.backtestValidationOutput,
+    modelRiskAgent: result.modelRiskOutput,
+    monitoringAgent: result.monitoringOutput,
     skepticAgent: {
       reviewedTheses: result.skepticOutput.reviewedTheses,
     },

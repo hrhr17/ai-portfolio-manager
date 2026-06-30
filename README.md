@@ -50,23 +50,142 @@ This keeps the old cron working while the new committee pipeline becomes the mai
 2. Signal Scout Agent
    Converts raw inputs into research tasks. Social signals can only create research tasks, not trades.
 
-3. Equity Research Agent
+3. Quant Research Agent / Factor Lab
+   Converts repeated ideas into research-only factor hypotheses. Factors cannot create trades and do not affect paper allocation yet.
+
+4. Equity Research Agent
    Builds a concise thesis for each candidate: business summary, valuation context, catalyst, risks, time horizon, and verification needs.
 
-4. Skeptic Agent
+5. Skeptic Agent
    Challenges every thesis before allocation. It flags missing data, stale evidence, valuation risk, social manipulation risk, liquidity concerns, and other objections.
 
-5. Portfolio Manager Agent
+6. Portfolio Manager Agent
    Converts reviewed theses into paper-only BUY, SELL, HOLD, or WATCH recommendations.
 
-6. Risk Engine
+7. Risk Engine
    Applies deterministic hard rules: no live trading, no margin, no options, no crypto, position caps, turnover caps, and concentration caps.
 
-7. Reporting Agent
+8. Reporting Agent
    Writes the daily Google Doc report when the run is not a dry run.
 
-8. Post-Mortem / Learning Agent
+9. Post-Mortem / Learning Agent
    Reviews available paper-portfolio history, benchmark placeholders, source reliability, and process lessons.
+
+## Quant Research / Factor Lab Roadmap
+
+The long-term goal is a quantamental investment committee: human-supervised research that combines investment judgment with disciplined, testable factor work.
+
+Repeated ideas should become testable factors. X/social, insider, and fundamental signals can inspire hypotheses, but they are not enough to justify trades by themselves. For example, repeated insider clusters, recurring earnings-revision patterns, or repeated high-quality social research mentions should become factor hypotheses with named data requirements, benchmarks, holding periods, expected edge, known biases, and validation status.
+
+Factors cannot directly create BUY or SELL recommendations. Before a factor can influence even paper allocation, it must pass the same committee discipline:
+
+```text
+Research hypothesis -> Skeptic/Challenger review -> Backtest/validation -> Portfolio review -> Deterministic Risk Engine -> Human review
+```
+
+The Factor Lab roadmap emphasizes transparent tools: probability, Bayesian updating, regime awareness, position sizing, portfolio construction, signal extraction, optimization, simulation, and post-mortem discipline. The current implementation is only lightweight scaffolding. It does not include a full backtesting engine, paid data dependency, black-box ML allocation, live brokerage execution, margin, options, crypto, or guaranteed returns.
+
+The deterministic Risk Engine remains the only risk gate for paper recommendations. Factor Lab `riskControls` are research metadata for future hypothesis validation, not a second execution or risk system.
+
+Future ideas should move through explicit orchestrator states instead of jumping from signal to recommendation:
+
+```text
+captured
+normalized
+hypothesis_created
+researching
+challenged
+validated
+paper_trading
+human_review
+approved
+rejected
+monitoring
+retired
+```
+
+The current route does not implement a full state machine yet. It only documents the interface and emits research-only placeholders.
+
+Standard factor hypotheses should use this shape:
+
+```text
+id
+title
+sourceSignals
+hypothesis
+economicRationale
+factorDefinition
+requiredData
+benchmark
+holdingPeriod
+entryRules
+exitRules
+riskControls
+decayConditions
+knownBiases
+validationStatus
+allowedAction
+canDirectlyTrade
+```
+
+Hypotheses must be specific, falsifiable, timestamp-aware, and research-only. `allowedAction` may be `research_only`, `watch`, or `paper_candidate`, but this scaffold currently emits only `research_only`. `canDirectlyTrade` must remain `false`.
+
+Future quant challenge and model-risk review should explicitly test:
+
+```text
+look-ahead bias
+survivorship bias
+overfitting
+data leakage
+multiple comparisons
+weak sample size
+transaction cost realism
+regime dependency
+factor crowding
+missing economic rationale
+```
+
+Future statistical validation should require:
+
+```text
+benchmark versus SPY/QQQ
+block bootstrap or appropriate time-series null model
+multiple-comparisons correction such as Benjamini-Hochberg
+strict t-statistic threshold for new factors
+walk-forward validation
+holding-period sensitivity
+transaction cost/slippage assumptions
+data availability at decision time
+```
+
+Future monitoring should track:
+
+```text
+signal health
+performance health
+data health
+drawdown breaches
+Sharpe degradation
+signal inactivity
+stale/missing inputs
+human-review escalation
+```
+
+The human review gate is permanent. AI can generate and pre-filter hypotheses, write research tasks, and propose paper recommendations, but AI cannot bypass human review for live capital. Any live trading or brokerage integration is out of scope until paper performance, auditability, monitoring, and deterministic risk gates are proven.
+
+Starter factors currently tracked in code:
+
+```text
+insider_cluster_buying
+politician_trade_following
+unusual_options_flow
+earnings_revision_momentum
+social_research_density
+relative_strength
+valuation_reset
+post_earnings_drift
+quality_value_momentum_combo
+```
 
 ## Google Drive Report
 
@@ -78,6 +197,7 @@ The report includes:
 - X / Social Signal Desk
 - Henry X Intelligence Brief
 - Research Queue
+- Quant Research / Factor Lab
 - Approved Paper Trades
 - Rejected Ideas and Why
 - Risk Committee Output
@@ -282,6 +402,11 @@ lib/agents/skepticAgent.js
 lib/agents/portfolioManagerAgent.js
 lib/agents/reportingAgent.js
 lib/agents/postMortemAgent.js
+lib/agents/quantResearchAgent.js
+lib/agents/backtestValidationAgent.js
+lib/agents/modelRiskAgent.js
+lib/agents/monitoringAgent.js
+lib/factors/factorLibrary.js
 lib/risk/riskEngine.js
 lib/portfolio/paperPortfolio.js
 lib/sources/xSourceAgent.js
