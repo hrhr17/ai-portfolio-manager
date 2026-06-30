@@ -1,12 +1,12 @@
-const { collectDailyInputs } = require("./agents/dataAgent");
-const { buildResearchQueue } = require("./agents/signalScoutAgent");
-const { researchCandidates } = require("./agents/equityResearchAgent");
-const { challengeTheses } = require("./agents/skepticAgent");
-const { buildPaperRecommendations } = require("./agents/portfolioManagerAgent");
-const { buildDailyCommitteeReport, writeCommitteeReport } = require("./agents/reportingAgent");
-const { runPostMortemReview } = require("./agents/postMortemAgent");
-const { runRiskReview } = require("./risk/riskEngine");
-const { loadPaperPortfolioSnapshot, applyPaperRecommendations } = require("./portfolio/paperPortfolio");
+const { collectDailyInputs } = require("../lib/agents/dataAgent");
+const { buildResearchQueue } = require("../lib/agents/signalScoutAgent");
+const { researchCandidates } = require("../lib/agents/equityResearchAgent");
+const { challengeTheses } = require("../lib/agents/skepticAgent");
+const { buildPaperRecommendations } = require("../lib/agents/portfolioManagerAgent");
+const { buildDailyCommitteeReport, writeCommitteeReport } = require("../lib/agents/reportingAgent");
+const { runPostMortemReview } = require("../lib/agents/postMortemAgent");
+const { runRiskReview } = require("../lib/risk/riskEngine");
+const { loadPaperPortfolioSnapshot, applyPaperRecommendations } = require("../lib/portfolio/paperPortfolio");
 
 module.exports = async function handler(req, res) {
   if (!["GET", "POST"].includes(req.method || "GET")) {
