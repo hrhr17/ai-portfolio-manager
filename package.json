@@ -1,7 +1,7 @@
 {
   "name": "ai-portfolio-manager",
   "version": "1.0.0",
-  "description": "AI-powered investment management system with insider transaction analysis",
+  "description": "Paper-only AI Investment Committee for supervised investment research",
   "main": "index.js",
   "scripts": {
     "dev": "vercel dev",
