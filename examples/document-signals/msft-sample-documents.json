@@ -1,0 +1,76 @@
+{
+  "fixture_name": "msft_manual_document_signal_samples_v0",
+  "fixture_version": "0.1.0",
+  "fixture_type": "synthetic_manual_samples",
+  "purpose": "Tiny mock document pack for future Document Signal Agent v0 dry-run parser validation.",
+  "synthetic": true,
+  "not_real_market_data": true,
+  "copyright_note": "Excerpts are short synthetic/paraphrased mock text and are not copied from real company documents.",
+  "ticker": "MSFT",
+  "company": "Microsoft Corporation",
+  "documents": [
+    {
+      "ticker": "MSFT",
+      "company": "Microsoft Corporation",
+      "source_type": "earnings_release",
+      "source_url": null,
+      "source_label": "manual_sample_document",
+      "source_date": "2026-01-30",
+      "available_at": "2026-01-30T21:05:00Z",
+      "captured_at": "2026-01-30T21:20:00Z",
+      "document_title": "Synthetic Q2 Earnings Release Excerpt",
+      "excerpt": "Management reported steady cloud and productivity software demand, with growth partly offset by customer optimization and higher infrastructure costs. The outlook assumes continued AI-related capacity investment and stable enterprise renewal activity.",
+      "expected_signal_types": [
+        "demand_commentary",
+        "margin_pricing",
+        "guidance_sentiment",
+        "ai_exposure"
+      ],
+      "data_available_at_decision_time": "unknown",
+      "allowed_action": "research_only",
+      "can_directly_trade": false
+    },
+    {
+      "ticker": "MSFT",
+      "company": "Microsoft Corporation",
+      "source_type": "earnings_call_transcript",
+      "source_url": null,
+      "source_label": "manual_sample_document",
+      "source_date": "2026-01-30",
+      "available_at": "2026-01-30T22:30:00Z",
+      "captured_at": "2026-01-30T22:45:00Z",
+      "document_title": "Synthetic Earnings Call Transcript Excerpt",
+      "excerpt": "On the call, management said AI usage is broadening across large enterprise customers, but monetization remains uneven by product line. They also noted that near-term capital spending may stay elevated while capacity is added ahead of demand.",
+      "expected_signal_types": [
+        "ai_exposure",
+        "demand_commentary",
+        "capital_allocation",
+        "management_uncertainty"
+      ],
+      "data_available_at_decision_time": "unknown",
+      "allowed_action": "research_only",
+      "can_directly_trade": false
+    },
+    {
+      "ticker": "MSFT",
+      "company": "Microsoft Corporation",
+      "source_type": "10k_10q_mda_risk_factors",
+      "source_url": null,
+      "source_label": "manual_sample_document",
+      "source_date": "2026-02-15",
+      "available_at": "2026-02-15T14:00:00Z",
+      "captured_at": "2026-02-15T14:30:00Z",
+      "document_title": "Synthetic 10-K/10-Q MD&A and Risk Factors Excerpt",
+      "excerpt": "The company described risks from cybersecurity threats, regulatory scrutiny, and the need to scale data center capacity efficiently. It also noted that intense platform competition could pressure pricing or require additional product investment.",
+      "expected_signal_types": [
+        "balance_sheet_risk",
+        "litigation_regulatory_risk",
+        "competitive_moat",
+        "disruption_risk"
+      ],
+      "data_available_at_decision_time": "unknown",
+      "allowed_action": "research_only",
+      "can_directly_trade": false
+    }
+  ]
+}
