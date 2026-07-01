@@ -444,6 +444,56 @@ examples/document-signals/msft-fy26-q3-source-pack-manifest.json
 
 Real Drive ingestion, DOCX/XLSX/PPTX parsing, LLM scoring, report writing, and portfolio integration are later PRs.
 
+## Paper Portfolio Committee v0 Dry Run
+
+Paper Portfolio Committee v0 creates simulated paper-portfolio actions from local fixtures. It is local, deterministic, and dry-run only.
+
+Run:
+
+```text
+npm run paper:committee:dry-run
+```
+
+Validate:
+
+```text
+npm run paper:committee:validate
+```
+
+Inputs:
+
+```text
+fixtures/watchlist-research/watchlist.sample.json
+fixtures/watchlist-research/research-queue.sample.json
+fixtures/paper-portfolio/sample-portfolio.json
+```
+
+Generated reports:
+
+```text
+reports/paper-committee/
+```
+
+Allowed simulated paper labels:
+
+```text
+PAPER BUY CANDIDATE
+PAPER HOLD
+PAPER REDUCE / TRIM CANDIDATE
+AVOID
+WATCH
+```
+
+Current boundaries:
+
+- Uses local fixtures only.
+- Does not call live APIs.
+- Does not call LLMs.
+- Does not write production storage.
+- Does not connect to a brokerage or create account orders.
+- Does not use margin, options, or crypto.
+- Outputs simulated paper actions only, not real-money financial advice.
+
 ## Drive Source-Pack Metadata Dry Run
 
 Drive source-pack metadata dry run is a metadata-only scaffold for future document intake. It can describe source-pack files by file ID, name, MIME type, timestamps, size, and source-type guess without downloading or parsing file contents.
@@ -524,6 +574,8 @@ lib/utils/writeToDrive.js
 scripts/driveSourcePacksMetadataDryRun.js
 scripts/documentSourcesExtractDryRun.js
 scripts/documentSignalsDryRun.js
+scripts/run-paper-portfolio-committee-dry-run.js
+scripts/validate-paper-portfolio-committee.js
 scripts/validateDocumentSignals.js
 scripts/validateDriveMetadata.js
 ```

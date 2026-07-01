@@ -1,0 +1,107 @@
+{
+  "schema_version": "paper_committee_research_queue_fixture_v0",
+  "fixture_name": "first_watchlist_research_queue_sample",
+  "fixture_version": "2026-07-01",
+  "source_title": "AI Portfolio Manager - First Watchlist",
+  "runtime_google_sheets_integration": false,
+  "tasks": [
+    {
+      "task_id": "rq-001",
+      "ticker_scope": "Pilot Universe",
+      "category": "All",
+      "task_type": "weekly_paper_committee_dry_run",
+      "agent_route": "Paper Portfolio Committee",
+      "research_question": "Produce a weekly paper-portfolio committee report from local watchlist, research queue, and paper portfolio fixtures.",
+      "trigger_source": "Watchlist",
+      "priority": "High",
+      "status": "Ready for Codex",
+      "evidence_required": [
+        "Ticker",
+        "what changed",
+        "why it may matter",
+        "source links or unavailable markers",
+        "missing verification",
+        "manual review items"
+      ],
+      "blocked_output": [
+        "Real-money instructions",
+        "brokerage instructions",
+        "orders",
+        "actual-portfolio rebalancing",
+        "margin",
+        "options",
+        "crypto",
+        "guaranteed-return claims"
+      ],
+      "notes": "Local dry-run first. Markdown and JSON outputs."
+    },
+    {
+      "task_id": "rq-003",
+      "ticker_scope": "High-priority sample names",
+      "category": "Semis / Networking / Power / Defense",
+      "task_type": "catalyst_scan",
+      "agent_route": "News Catalyst Agent",
+      "research_question": "Identify upcoming earnings, events, filings, or obvious catalysts where available.",
+      "trigger_source": "Watchlist + existing free/env-backed utilities",
+      "priority": "High",
+      "status": "Ready for Codex",
+      "evidence_required": [
+        "Event date",
+        "source URL",
+        "source timestamp",
+        "unavailable marker when missing"
+      ],
+      "blocked_output": [
+        "Catalyst treated as real-money instruction"
+      ],
+      "notes": "Optional data should degrade gracefully."
+    },
+    {
+      "task_id": "rq-008",
+      "ticker_scope": "Any generated digest item",
+      "category": "All",
+      "task_type": "skeptic_review_queue",
+      "agent_route": "Skeptic Agent",
+      "research_question": "For every high-priority item, create bear-case and missing-verification review items.",
+      "trigger_source": "Watchlist Research Digest",
+      "priority": "High",
+      "status": "Ready for Codex",
+      "evidence_required": [
+        "Contradictory evidence",
+        "source weakness",
+        "alternative explanations",
+        "valuation and risk caveats"
+      ],
+      "blocked_output": [
+        "Paper action converted into real-money language"
+      ],
+      "notes": "Manual review queue is required in v0 output."
+    },
+    {
+      "task_id": "rq-009",
+      "ticker_scope": "All outputs",
+      "category": "All",
+      "task_type": "risk_boundary_validation",
+      "agent_route": "Deterministic Risk Engine",
+      "research_question": "Validate generated outputs do not contain prohibited real-money language.",
+      "trigger_source": "All generated reports",
+      "priority": "High",
+      "status": "Ready for Codex",
+      "evidence_required": [
+        "Blocked-term scan",
+        "schema validation",
+        "safety checklist result"
+      ],
+      "blocked_output": [
+        "Live trading",
+        "brokerage",
+        "margin",
+        "options",
+        "crypto",
+        "actual-money allocation",
+        "order placement"
+      ],
+      "notes": "Rule-based guardrail. No LLM override."
+    }
+  ]
+}

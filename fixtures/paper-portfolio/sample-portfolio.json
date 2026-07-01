@@ -1,0 +1,55 @@
+{
+  "schema_version": "paper_portfolio_fixture_v0",
+  "fixture_name": "sample_paper_portfolio_v0",
+  "fixture_version": "2026-07-01",
+  "as_of": "2026-07-01T13:00:00.000Z",
+  "currency": "USD",
+  "cash_balance": 25000,
+  "cash_weight_pct": 18.5,
+  "paper_only": true,
+  "simulated": true,
+  "rules": {
+    "max_single_name_weight_pct": 5,
+    "max_theme_weight_pct": 18,
+    "blocked_asset_classes": ["options", "margin", "crypto"],
+    "live_trading_enabled": false,
+    "brokerage_integration_enabled": false,
+    "automated_ordering_enabled": false,
+    "production_storage_enabled": false
+  },
+  "holdings": [
+    {
+      "ticker": "NVDA",
+      "company_name": "NVIDIA Corporation",
+      "asset_class": "equity",
+      "theme": "AI compute / chip ecosystem",
+      "category": "Semis",
+      "current_mock_weight_pct": 4.8,
+      "cost_basis": 118.25,
+      "cost_basis_available": true,
+      "notes": "Sample paper holding only."
+    },
+    {
+      "ticker": "PLTR",
+      "company_name": "Palantir Technologies Inc.",
+      "asset_class": "equity",
+      "theme": "Defense AI and autonomy",
+      "category": "Defense",
+      "current_mock_weight_pct": 6.2,
+      "cost_basis": 72.4,
+      "cost_basis_available": true,
+      "notes": "Sample paper holding above single-name rule for risk-rule validation."
+    },
+    {
+      "ticker": "VRT",
+      "company_name": "Vertiv Holdings Co.",
+      "asset_class": "equity",
+      "theme": "Power, grid, and electrification",
+      "category": "Power / Electrification",
+      "current_mock_weight_pct": 3.2,
+      "cost_basis": null,
+      "cost_basis_available": false,
+      "notes": "Sample paper holding only."
+    }
+  ]
+}
