@@ -1,0 +1,112 @@
+{
+  "fixture_name": "manual_x_intelligence_intake_v0_samples",
+  "fixture_version": "0.1.0",
+  "synthetic": true,
+  "manual_fixture_only": true,
+  "description": "Synthetic manual X/bookmark-style records for local dry-run parser validation only. These records are not real market data and cannot create BUY/SELL/HOLD recommendations.",
+  "items": [
+    {
+      "id": "manual-x-001",
+      "source_platform": "x_manual",
+      "source_url": "https://x.example/manual/codex-review-checklist",
+      "author_handle": "@sample_builder",
+      "captured_at": "2026-07-01T13:00:00Z",
+      "text": "Codex workflow idea: save reusable review checklists for parser checks, no-secret scans, PR notes, and deployment smoke tests.",
+      "user_note": "Could improve repeatability for the investment committee workflow.",
+      "tags": ["codex", "agent_workflow", "automation"]
+    },
+    {
+      "id": "manual-x-002",
+      "source_platform": "x_manual",
+      "source_url": "https://x.example/manual/robotics-startup-demo",
+      "author_handle": "@sample_founder_notes",
+      "captured_at": "2026-07-01T13:05:00Z",
+      "text": "Warehouse robotics startup launches a new autonomy demo focused on unloading trailers and reducing repetitive labor.",
+      "user_note": "Interesting startup to watch for automation theme mapping.",
+      "tags": ["startup", "robotics", "automation"]
+    },
+    {
+      "id": "manual-x-003",
+      "source_platform": "x_manual",
+      "source_url": "https://x.example/manual/ai-workflow-audit-service",
+      "author_handle": "@sample_operator",
+      "captured_at": "2026-07-01T13:10:00Z",
+      "text": "Business opportunity: small firms may pay for practical AI workflow audits that remove repetitive admin work.",
+      "user_note": "Potential service packaging idea, not a portfolio signal.",
+      "tags": ["business_opportunity", "ai_workflows"]
+    },
+    {
+      "id": "manual-x-004",
+      "source_platform": "x_manual",
+      "source_url": "https://x.example/manual/data-center-power-thread",
+      "author_handle": "@sample_writer",
+      "captured_at": "2026-07-01T13:15:00Z",
+      "text": "Thread idea: explain why AI data center power, cooling, memory, and grid interconnects are becoming the bottleneck.",
+      "user_note": "Good content angle for AI infrastructure research notes.",
+      "tags": ["content_idea", "ai_infrastructure", "power"]
+    },
+    {
+      "id": "manual-x-005",
+      "source_platform": "x_manual",
+      "source_url": "https://x.example/manual/inference-optimization-reading",
+      "author_handle": "@sample_research_links",
+      "captured_at": "2026-07-01T13:20:00Z",
+      "text": "Learning resource: practical guide to transformer inference optimization, batching, quantization, and GPU memory pressure.",
+      "user_note": "Useful background for compute supply chain research.",
+      "tags": ["learning_resource", "semiconductors", "ai_infrastructure"]
+    },
+    {
+      "id": "manual-x-006",
+      "source_platform": "x_manual",
+      "source_url": "https://x.example/manual/msft-data-center-region",
+      "author_handle": "@sample_company_news",
+      "captured_at": "2026-07-01T13:25:00Z",
+      "text": "$MSFT announces a new cloud region with liquid-cooling pilots and local power partnerships; verify with company release.",
+      "user_note": "Potential company news item for AI infrastructure research queue.",
+      "tickers": ["MSFT"],
+      "tags": ["company_news", "data_centers", "power"]
+    },
+    {
+      "id": "manual-x-007",
+      "source_platform": "x_manual",
+      "source_url": "https://x.example/manual/nvda-channel-checks",
+      "author_handle": "@sample_researcher",
+      "captured_at": "2026-07-01T13:30:00Z",
+      "text": "$NVDA channel checks suggest hyperscaler accelerator demand remains strong; verify against earnings, filings, and valuation context.",
+      "user_note": "Equity research note requiring source-quality review.",
+      "tickers": ["NVDA"],
+      "tags": ["equity_research", "semiconductors", "ai_infrastructure"]
+    },
+    {
+      "id": "manual-x-008",
+      "source_platform": "x_manual",
+      "source_url": "https://x.example/manual/rates-power-capex",
+      "author_handle": "@sample_macro",
+      "captured_at": "2026-07-01T13:35:00Z",
+      "text": "Macro note: Fed rate path, power prices, inflation, and long-end yields could affect data center capex pacing.",
+      "user_note": "Keep as daily report note for regime awareness.",
+      "tags": ["macro", "rates", "data_centers_power"]
+    },
+    {
+      "id": "manual-x-009",
+      "source_platform": "x_manual",
+      "source_url": "https://x.example/manual/amd-guidance-margin",
+      "author_handle": "@sample_earnings_watch",
+      "captured_at": "2026-07-01T13:40:00Z",
+      "text": "$AMD next-quarter guidance, revenue mix, and margin commentary may clarify accelerator traction after the transcript.",
+      "user_note": "Earnings catalyst watch item only.",
+      "tickers": ["AMD"],
+      "tags": ["earnings_catalyst", "semiconductors"]
+    },
+    {
+      "id": "manual-x-010",
+      "source_platform": "x_manual",
+      "source_url": "https://x.example/manual/vague-ai-hype",
+      "author_handle": "@sample_promo",
+      "captured_at": "2026-07-01T13:45:00Z",
+      "text": "100x guaranteed AI alert soon, vague screenshot, no source, no need for research.",
+      "user_note": "Low-quality hype example that should be ignored.",
+      "tags": ["hype", "noise"]
+    }
+  ]
+}
