@@ -1,0 +1,132 @@
+{
+  "schema_version": "watchlist_research_input_v0",
+  "fixture_name": "sample_watchlist_research_v0",
+  "fixture_version": "2026-07-01",
+  "sample_only": true,
+  "description": "Small deterministic watchlist for local Watchlist Research Agent v0 dry runs.",
+  "tickers": [
+    {
+      "ticker": "MSFT",
+      "company_name": "Microsoft Corporation",
+      "themes": ["cloud", "ai_infrastructure", "enterprise_software"],
+      "watch_reason": "Monitor AI infrastructure spending, Azure demand, and operating margin commentary.",
+      "changes": [
+        {
+          "change_id": "msft-ai-capex-commentary",
+          "category": "management_commentary",
+          "summary": "Sample fixture notes continued investor focus on AI capacity spending and Azure growth commentary.",
+          "why_it_may_matter": "AI capacity spending can affect growth expectations, margins, and free cash flow timing.",
+          "observed_at": "2026-06-27T14:00:00.000Z",
+          "severity": "medium",
+          "verification_status": "fixture_only_unverified",
+          "source_title": "Microsoft investor relations homepage",
+          "source_url": "https://www.microsoft.com/en-us/investor",
+          "evidence_text": "Use company earnings materials, filings, and call transcript to verify current Azure and AI capacity commentary."
+        }
+      ],
+      "current_claims": [
+        {
+          "claim_id": "msft-azure-demand",
+          "claim": "Azure AI demand remains a key driver to verify against primary company materials.",
+          "verification_status": "unverified",
+          "source_type": "manual_research_note",
+          "source_url": "https://www.microsoft.com/en-us/investor"
+        }
+      ],
+      "upcoming_catalysts": [
+        {
+          "catalyst_id": "msft-next-earnings",
+          "title": "Next quarterly earnings materials",
+          "date": null,
+          "expected_timing": "Unavailable in local fixture; verify manually.",
+          "source_url": "https://www.microsoft.com/en-us/investor/earnings",
+          "verification_status": "date_unverified"
+        }
+      ],
+      "manual_review_items": [
+        "Verify latest earnings date from Microsoft investor relations.",
+        "Check most recent 10-Q and earnings transcript for AI capacity spending, Azure growth, and margin commentary.",
+        "Add contradictory evidence if growth or margin language weakened."
+      ]
+    },
+    {
+      "ticker": "NVDA",
+      "company_name": "NVIDIA Corporation",
+      "themes": ["semiconductors", "ai_infrastructure", "data_centers"],
+      "watch_reason": "Monitor data center demand, supply constraints, margin commentary, and customer concentration.",
+      "changes": [
+        {
+          "change_id": "nvda-data-center-demand-watch",
+          "category": "demand_commentary",
+          "summary": "Sample fixture keeps data center demand as the primary research focus.",
+          "why_it_may_matter": "Demand durability, supply constraints, and customer mix can change revenue quality and risk context.",
+          "observed_at": "2026-06-27T14:05:00.000Z",
+          "severity": "high",
+          "verification_status": "fixture_only_unverified",
+          "source_title": "NVIDIA investor relations homepage",
+          "source_url": "https://investor.nvidia.com/",
+          "evidence_text": "Use company earnings materials, filings, and transcript commentary to verify data center demand and margin claims."
+        }
+      ],
+      "current_claims": [
+        {
+          "claim_id": "nvda-ai-accelerator-demand",
+          "claim": "AI accelerator demand remains strong, but this fixture claim needs primary-source verification.",
+          "verification_status": "unverified",
+          "source_type": "manual_research_note",
+          "source_url": "https://investor.nvidia.com/"
+        }
+      ],
+      "upcoming_catalysts": [
+        {
+          "catalyst_id": "nvda-next-earnings",
+          "title": "Next quarterly earnings materials",
+          "date": null,
+          "expected_timing": "Unavailable in local fixture; verify manually.",
+          "source_url": "https://investor.nvidia.com/events-and-presentations/events-and-presentations/default.aspx",
+          "verification_status": "date_unverified"
+        }
+      ],
+      "manual_review_items": [
+        "Verify latest earnings date from NVIDIA investor relations.",
+        "Compare data center growth commentary with supply, margin, and customer concentration risks.",
+        "Look for any primary-source evidence that weakens the demand claim."
+      ]
+    },
+    {
+      "ticker": "PLTR",
+      "company_name": "Palantir Technologies Inc.",
+      "themes": ["enterprise_ai", "government_software", "defense_tech"],
+      "watch_reason": "Monitor commercial AI platform adoption, government contract commentary, and valuation context.",
+      "changes": [
+        {
+          "change_id": "pltr-commercial-ai-watch",
+          "category": "company_commentary",
+          "summary": "Sample fixture flags commercial AI platform adoption as a research item to verify.",
+          "why_it_may_matter": "Commercial adoption quality can affect revenue durability, margin mix, and valuation debate.",
+          "observed_at": "2026-06-27T14:10:00.000Z",
+          "severity": "medium",
+          "verification_status": "fixture_only_unverified",
+          "source_title": "Palantir investor relations homepage",
+          "source_url": "https://investors.palantir.com/",
+          "evidence_text": "Use company earnings materials, filings, and contract disclosures to verify commercial AI platform adoption."
+        }
+      ],
+      "current_claims": [
+        {
+          "claim_id": "pltr-commercial-ai-adoption",
+          "claim": "Commercial AI platform adoption is improving, but this fixture claim is not verified.",
+          "verification_status": "unverified",
+          "source_type": "manual_research_note",
+          "source_url": "https://investors.palantir.com/"
+        }
+      ],
+      "upcoming_catalysts": [],
+      "manual_review_items": [
+        "Verify latest earnings date from Palantir investor relations.",
+        "Separate commercial AI platform adoption evidence from broad market hype.",
+        "Review valuation context and counterarguments before escalating to deeper research."
+      ]
+    }
+  ]
+}

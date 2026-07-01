@@ -444,6 +444,43 @@ examples/document-signals/msft-fy26-q3-source-pack-manifest.json
 
 Real Drive ingestion, DOCX/XLSX/PPTX parsing, LLM scoring, report writing, and portfolio integration are later PRs.
 
+## Watchlist Research Agent v0 Dry Run
+
+Watchlist Research Agent v0 is a local deterministic research-report pipeline, not an autonomous trading agent.
+
+Run:
+
+```text
+npm run watchlist:research:dry-run
+```
+
+Validate:
+
+```text
+npm run watchlist:research:validate
+```
+
+The sample input lives at:
+
+```text
+examples/watchlist-research/sample-watchlist.json
+```
+
+The dry run writes ignored local reports under:
+
+```text
+reports/watchlist-research/
+```
+
+Current boundaries:
+
+- Uses only local watchlist fixture data.
+- Does not call live APIs.
+- Does not call LLMs.
+- Does not write portfolio state or production storage.
+- Does not create real-money instructions, target prices, allocation sizing, or rebalancing instructions.
+- Outputs research priority ranking only for manual review.
+
 ## Drive Source-Pack Metadata Dry Run
 
 Drive source-pack metadata dry run is a metadata-only scaffold for future document intake. It can describe source-pack files by file ID, name, MIME type, timestamps, size, and source-type guess without downloading or parsing file contents.
@@ -524,6 +561,8 @@ lib/utils/writeToDrive.js
 scripts/driveSourcePacksMetadataDryRun.js
 scripts/documentSourcesExtractDryRun.js
 scripts/documentSignalsDryRun.js
+scripts/run-watchlist-research-dry-run.js
+scripts/validate-watchlist-research.js
 scripts/validateDocumentSignals.js
 scripts/validateDriveMetadata.js
 ```
