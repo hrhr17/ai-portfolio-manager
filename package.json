@@ -13,9 +13,11 @@
     "document-signals:validate": "node scripts/validateDocumentSignals.js",
     "daily:dry-run": "node scripts/daily-investment-committee-dry-run.js",
     "daily:validate": "node scripts/daily-investment-committee-validate.js",
+    "paper:committee:dry-run": "node scripts/run-paper-portfolio-committee-dry-run.js",
+    "paper:committee:validate": "node scripts/validate-paper-portfolio-committee.js",
     "x-intake:dry-run": "node scripts/x-intake-dry-run.js",
     "x-intake:validate": "node scripts/x-intake-validate.js",
-    "test": "npm run document-signals:validate && npm run drive-source-packs:validate && npm run x-intake:validate && npm run daily:validate"
+    "test": "npm run document-signals:validate && npm run drive-source-packs:validate && npm run x-intake:validate && npm run daily:validate && npm run paper:committee:validate"
   },
   "dependencies": {
     "axios": "^1.7.2",

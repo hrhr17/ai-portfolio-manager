@@ -32,3 +32,7 @@ google-*.json
 *.p8
 id_rsa
 id_ed25519
+
+# Local generated paper committee reports
+reports/paper-committee/*
+!reports/paper-committee/.gitkeep

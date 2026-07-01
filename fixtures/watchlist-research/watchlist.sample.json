@@ -1,0 +1,271 @@
+{
+  "schema_version": "paper_committee_watchlist_fixture_v0",
+  "fixture_name": "first_watchlist_paper_committee_sample",
+  "fixture_version": "2026-07-01",
+  "product_reference": {
+    "source_title": "AI Portfolio Manager - First Watchlist",
+    "source_tabs": ["Dashboard", "Watchlist", "Research Queue", "Codex Build Spec"],
+    "runtime_google_sheets_integration": false,
+    "notes": "Local fixture mirrors a small pilot subset of the sheet. The full sheet remains product reference only for v0."
+  },
+  "tickers": [
+    {
+      "category": "Semis",
+      "ticker": "NVDA",
+      "ticker_display": "$NVDA",
+      "instrument_type": "Equity",
+      "asset_class": "equity",
+      "company_name": "NVIDIA Corporation",
+      "primary_theme": "AI compute / chip ecosystem",
+      "research_angle": "Core AI compute and chip ecosystem exposure.",
+      "priority": "High",
+      "status": "Research In Progress",
+      "conviction": "High",
+      "source_bucket": "Henry Raw Watchlist",
+      "thesis_hook": "Core AI compute and chip ecosystem exposure.",
+      "risk_skeptic_lens": "Valuation, export controls, capex cyclicality, competitive pressure.",
+      "what_changed": [
+        "Pilot fixture keeps AI accelerator demand and data center growth as the current review focus.",
+        "Existing paper holding is close to the sample single-name limit."
+      ],
+      "why_it_may_matter": [
+        "AI compute demand can affect revenue durability, margins, and market expectations.",
+        "High expectations make valuation and capex cyclicality important skeptic checks."
+      ],
+      "evidence": [
+        {
+          "source_title": "NVIDIA investor relations",
+          "source_url": "https://investor.nvidia.com/",
+          "verification_status": "source_link_available",
+          "evidence_note": "Use primary earnings materials and filings for confirmation."
+        },
+        {
+          "source_title": "Company filings placeholder",
+          "source_url": "https://www.sec.gov/edgar/browse/?CIK=1045810",
+          "verification_status": "source_link_available",
+          "evidence_note": "Review latest 10-Q or 10-K before raising paper conviction."
+        }
+      ],
+      "missing_verification": [
+        "Confirm latest data center revenue growth and margin commentary from primary sources.",
+        "Check current valuation context and export-control risk."
+      ],
+      "manual_review_items": [
+        "Compare current paper exposure against max single-name rule.",
+        "Add bear-case notes before any future paper change."
+      ],
+      "committee_score": 86
+    },
+    {
+      "category": "Networking",
+      "ticker": "AVGO",
+      "ticker_display": "$AVGO",
+      "instrument_type": "Equity",
+      "asset_class": "equity",
+      "company_name": "Broadcom Inc.",
+      "primary_theme": "AI data center networking",
+      "research_angle": "AI clusters need faster networking, switching, interconnect, and connectivity.",
+      "priority": "High",
+      "status": "Needs Research",
+      "conviction": "High",
+      "source_bucket": "Henry Raw Watchlist",
+      "thesis_hook": "AI clusters need faster networking, switching, interconnect, and connectivity.",
+      "risk_skeptic_lens": "AI capex durability, hyperscaler concentration, margin pressure.",
+      "what_changed": [
+        "Sheet category highlights networking as a separate AI infrastructure bottleneck.",
+        "No current paper holding exists in the sample portfolio."
+      ],
+      "why_it_may_matter": [
+        "Networking exposure may diversify the AI infrastructure paper book away from GPU-only exposure.",
+        "Customer concentration and AI capex durability still need skeptic review."
+      ],
+      "evidence": [
+        {
+          "source_title": "Broadcom investor relations",
+          "source_url": "https://investors.broadcom.com/",
+          "verification_status": "source_link_available",
+          "evidence_note": "Use company materials to verify AI networking demand claims."
+        },
+        {
+          "source_title": "Company filings placeholder",
+          "source_url": "https://www.sec.gov/edgar/browse/?CIK=1730168",
+          "verification_status": "source_link_available",
+          "evidence_note": "Review latest filing for segment exposure and risk factors."
+        }
+      ],
+      "missing_verification": [
+        "Confirm AI revenue mix from primary company sources.",
+        "Check valuation and customer concentration risk."
+      ],
+      "manual_review_items": [
+        "Verify whether AI networking thesis is supported by filings and earnings call language.",
+        "Compare against existing semis exposure before any paper action is manually approved."
+      ],
+      "committee_score": 82
+    },
+    {
+      "category": "Power / Electrification",
+      "ticker": "VRT",
+      "ticker_display": "$VRT",
+      "instrument_type": "Equity",
+      "asset_class": "equity",
+      "company_name": "Vertiv Holdings Co.",
+      "primary_theme": "Power, grid, and electrification",
+      "research_angle": "AI data center growth stresses grid, power equipment, and electrification supply chains.",
+      "priority": "High",
+      "status": "Research In Progress",
+      "conviction": "Medium",
+      "source_bucket": "Henry Raw Watchlist",
+      "thesis_hook": "AI data center growth stresses grid, power equipment, and electrification supply chains.",
+      "risk_skeptic_lens": "Project timing, regulation, grid bottlenecks, capital intensity.",
+      "what_changed": [
+        "Power and cooling remain a first-watchlist category for AI infrastructure bottlenecks.",
+        "Sample portfolio already has a modest paper holding."
+      ],
+      "why_it_may_matter": [
+        "Power and cooling constraints may become a second-order AI infrastructure bottleneck.",
+        "Project timing and valuation risk can weaken the thesis."
+      ],
+      "evidence": [
+        {
+          "source_title": "Vertiv investor relations",
+          "source_url": "https://investors.vertiv.com/",
+          "verification_status": "source_link_available",
+          "evidence_note": "Use primary materials to verify demand and backlog commentary."
+        }
+      ],
+      "missing_verification": [
+        "Confirm backlog, margin, and project timing commentary.",
+        "Check whether AI data center demand is already reflected in expectations."
+      ],
+      "manual_review_items": [
+        "Review latest investor presentation and earnings transcript.",
+        "Add downside case for capital intensity and project delays."
+      ],
+      "committee_score": 72
+    },
+    {
+      "category": "Defense",
+      "ticker": "PLTR",
+      "ticker_display": "$PLTR",
+      "instrument_type": "Equity",
+      "asset_class": "equity",
+      "company_name": "Palantir Technologies Inc.",
+      "primary_theme": "Defense AI and autonomy",
+      "research_angle": "AI, autonomy, and software are becoming larger parts of defense modernization.",
+      "priority": "High",
+      "status": "Skeptic Review",
+      "conviction": "Medium",
+      "source_bucket": "Henry Raw Watchlist",
+      "thesis_hook": "AI, autonomy, and software are becoming larger parts of defense modernization.",
+      "risk_skeptic_lens": "Budget cycles, procurement timing, political/regulatory exposure.",
+      "what_changed": [
+        "Sample paper holding is above the max single-name rule.",
+        "Defense AI thesis remains active but needs valuation and concentration review."
+      ],
+      "why_it_may_matter": [
+        "Overweight mock exposure creates a rule-based concentration issue.",
+        "Government and commercial AI adoption evidence needs stronger source support."
+      ],
+      "evidence": [
+        {
+          "source_title": "Palantir investor relations",
+          "source_url": "https://investors.palantir.com/",
+          "verification_status": "source_link_available",
+          "evidence_note": "Use primary earnings materials and filings for confirmation."
+        }
+      ],
+      "missing_verification": [
+        "Confirm current commercial AI platform adoption evidence.",
+        "Check valuation context and defense procurement timing.",
+        "Review whether sample paper weight violates concentration rules."
+      ],
+      "manual_review_items": [
+        "Review concentration breach before approving any paper change.",
+        "Add skeptic case on valuation and political risk."
+      ],
+      "committee_score": 66
+    },
+    {
+      "category": "Data Centers",
+      "ticker": "IREN",
+      "ticker_display": "$IREN",
+      "instrument_type": "Equity",
+      "asset_class": "equity",
+      "company_name": "IREN Limited",
+      "primary_theme": "AI data center infrastructure",
+      "research_angle": "Direct exposure to AI compute capacity, hosting, and data center infrastructure.",
+      "priority": "Medium",
+      "status": "Needs Research",
+      "conviction": "Speculative",
+      "source_bucket": "Henry Raw Watchlist",
+      "thesis_hook": "Direct exposure to AI compute capacity, hosting, and data center infrastructure.",
+      "risk_skeptic_lens": "Power availability, financing, crypto/AI overlap, utilization risk.",
+      "what_changed": [
+        "Data center infrastructure is in the first-watchlist universe.",
+        "This sample item has high missing-verification burden and crypto-adjacent risk language."
+      ],
+      "why_it_may_matter": [
+        "AI hosting could be a real infrastructure theme if backed by contracts and utilization evidence.",
+        "Financing, power availability, and crypto-adjacent overlap can make the risk case too weak for the sample paper committee."
+      ],
+      "evidence": [
+        {
+          "source_title": "IREN investor relations",
+          "source_url": "https://investors.iren.com/",
+          "verification_status": "source_link_available",
+          "evidence_note": "Use company materials to separate AI hosting evidence from crypto-adjacent activity."
+        }
+      ],
+      "missing_verification": [
+        "Verify AI hosting revenue, contracts, utilization, and power availability.",
+        "Separate AI infrastructure exposure from crypto-adjacent activity.",
+        "Review financing, dilution, and customer concentration risk.",
+        "Find contradictory evidence before any future paper escalation."
+      ],
+      "manual_review_items": [
+        "Do not escalate until crypto-adjacent risk and financing risk are manually reviewed.",
+        "Require primary-source evidence for AI hosting revenue and utilization."
+      ],
+      "committee_score": 44
+    },
+    {
+      "category": "Semis",
+      "ticker": "AMD",
+      "ticker_display": "$AMD",
+      "instrument_type": "Equity",
+      "asset_class": "equity",
+      "company_name": "Advanced Micro Devices, Inc.",
+      "primary_theme": "AI compute / chip ecosystem",
+      "research_angle": "Core AI compute and chip ecosystem exposure.",
+      "priority": "Medium",
+      "status": "Raw Signal",
+      "conviction": "Unrated",
+      "source_bucket": "Henry Raw Watchlist",
+      "thesis_hook": "Core AI compute and chip ecosystem exposure.",
+      "risk_skeptic_lens": "Valuation, export controls, capex cyclicality, competitive pressure.",
+      "what_changed": [
+        "AMD remains in the semis pilot universe, but this fixture has less evidence than NVDA or AVGO."
+      ],
+      "why_it_may_matter": [
+        "AMD may matter as a second-source AI accelerator name, but evidence quality is not yet high enough for a paper candidate."
+      ],
+      "evidence": [
+        {
+          "source_title": "AMD investor relations",
+          "source_url": "https://ir.amd.com/",
+          "verification_status": "source_link_available",
+          "evidence_note": "Use primary company materials to verify AI accelerator demand and competitive positioning."
+        }
+      ],
+      "missing_verification": [
+        "Verify AI accelerator revenue trajectory and margin context.",
+        "Compare competitive position against stronger evidence names."
+      ],
+      "manual_review_items": [
+        "Keep in watch state until stronger source-backed evidence is added."
+      ],
+      "committee_score": 58
+    }
+  ]
+}
