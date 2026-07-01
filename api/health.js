@@ -43,6 +43,7 @@ module.exports = async function handler(req, res) {
     routes: {
       health: "/api/health",
       dailyInvestmentCommittee: "/api/daily-investment-committee",
+      dailyDryRun: "/api/daily-dry-run",
       legacyCronDelegate: "/api/smart-money-analyst",
       xIntake: "/api/x-intake",
     },
