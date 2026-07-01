@@ -37,10 +37,18 @@ This version is local/CLI-first. It is not scheduled by Vercel in this PR.
 
 ```bash
 npm run daily:dry-run
+npm run daily:save-dry-run
+npm run daily:latest
 npm run daily:validate
 ```
 
 The dry-run command exits nonzero if safety validation fails.
+
+`npm run daily:save-dry-run` runs the same fixture-only dry run, validates it, and saves one local JSON packet under `data/daily-packets/`. Generated packet JSON files are local artifacts and are ignored by git.
+
+`npm run daily:latest` prints the newest saved local packet summary. It does not create, modify, or delete packet files.
+
+This local packet store is only for reviewable dry-run artifacts. It is not production storage, not Google Drive storage, not scheduled behavior, not a report publishing system, and not a trading system.
 
 ## Protected Route
 
@@ -59,6 +67,22 @@ Authorization: Bearer <CRON_SECRET>
 The route returns `401` when `CRON_SECRET` is missing or the header does not exactly match. It returns the daily packet JSON when authorized.
 
 The route is dry-run only. It does not write to Google Drive, a portfolio ledger, a report store, or production storage.
+
+## Latest Packet Route
+
+The read-only route is:
+
+```text
+/api/latest-daily-packet
+```
+
+It requires:
+
+```text
+Authorization: Bearer <CRON_SECRET>
+```
+
+The route returns `401` when `CRON_SECRET` is missing or the header does not exactly match. It returns `404` when no local packet exists. It never creates, modifies, or deletes packets.
 
 ## Scheduling
 
@@ -82,7 +106,7 @@ The validator fails if prohibited direct-action fields appear, including target 
 
 ## Future Steps
 
-1. Persist daily packets.
+1. Review saved local packets and decide which fields are useful.
 2. Add a paper portfolio ledger.
 3. Add benchmark and performance tracking.
 4. Add a post-mortem loop.
