@@ -444,6 +444,54 @@ examples/document-signals/msft-fy26-q3-source-pack-manifest.json
 
 Real Drive ingestion, DOCX/XLSX/PPTX parsing, LLM scoring, report writing, and portfolio integration are later PRs.
 
+## Drive Source-Pack Metadata Dry Run
+
+Drive source-pack metadata dry run is a metadata-only scaffold for future document intake. It can describe source-pack files by file ID, name, MIME type, timestamps, size, and source-type guess without downloading or parsing file contents.
+
+Fixture mode is the default and does not require secrets:
+
+```text
+npm run --silent drive-source-packs:metadata-dry-run
+```
+
+Validate the metadata-only shape:
+
+```text
+npm run drive-source-packs:validate
+```
+
+The sample fixture lives at:
+
+```text
+examples/document-signals/drive-source-pack-metadata.sample.json
+```
+
+If existing Google Drive env vars are configured, an explicit live metadata-only dry run can be attempted with:
+
+```text
+npm run --silent drive-source-packs:metadata-dry-run -- --live --file-id 1dfP8xXMdw0YRnvvPisnZxdpNftc1_adu
+```
+
+or:
+
+```text
+npm run --silent drive-source-packs:metadata-dry-run -- --live --folder-id <GOOGLE_DRIVE_FOLDER_ID>
+```
+
+The command prints only metadata JSON. It does not print secret values.
+
+Current boundaries:
+
+- Metadata only.
+- No file content download.
+- No real document ingestion.
+- No zip extraction.
+- No DOCX, XLSX, PPTX, or PDF parsing.
+- No LLM scoring.
+- No report writing.
+- No portfolio impact.
+- No production storage writes.
+
 ## File Map
 
 ```text
@@ -471,10 +519,13 @@ lib/sources/xSourceAgent.js
 lib/utils/fetchInsiders.js
 lib/utils/fetchFundamentals.js
 lib/utils/sampleData.js
+lib/utils/driveMetadata.js
 lib/utils/writeToDrive.js
+scripts/driveSourcePacksMetadataDryRun.js
 scripts/documentSourcesExtractDryRun.js
 scripts/documentSignalsDryRun.js
 scripts/validateDocumentSignals.js
+scripts/validateDriveMetadata.js
 ```
 
 Only actual HTTP endpoints live under `api/`. Shared modules live under `lib/` so Vercel does not deploy each helper as a separate serverless function.

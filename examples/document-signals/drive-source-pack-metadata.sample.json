@@ -1,0 +1,33 @@
+{
+  "schema_version": "drive_source_pack_metadata_v0",
+  "mode": "google_drive_metadata_only",
+  "source": {
+    "drive_folder_id_env": "GOOGLE_DRIVE_FOLDER_ID",
+    "known_source_pack_file_id": "1dfP8xXMdw0YRnvvPisnZxdpNftc1_adu",
+    "fixture": true
+  },
+  "files": [
+    {
+      "file_id": "1dfP8xXMdw0YRnvvPisnZxdpNftc1_adu",
+      "name": "FY26q3-zip.zip",
+      "mime_type": "application/zip",
+      "created_time": null,
+      "modified_time": null,
+      "size": null,
+      "web_view_link_present": false,
+      "source_type_guess": "source_pack_zip",
+      "content_fetched": false,
+      "content_parsed": false
+    }
+  ],
+  "safety": {
+    "metadata_only": true,
+    "content_fetched": false,
+    "content_parsed": false,
+    "live_api_called": false,
+    "llm_used": false,
+    "portfolio_written": false,
+    "report_written": false,
+    "production_storage_written": false
+  }
+}
