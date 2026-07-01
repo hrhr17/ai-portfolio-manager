@@ -11,7 +11,9 @@
     "document-signals:extract-dry-run": "node scripts/documentSourcesExtractDryRun.js",
     "document-signals:dry-run": "node scripts/documentSignalsDryRun.js",
     "document-signals:validate": "node scripts/validateDocumentSignals.js",
-    "test": "npm run document-signals:validate && npm run drive-source-packs:validate"
+    "x-intake:dry-run": "node scripts/x-intake-dry-run.js",
+    "x-intake:validate": "node scripts/x-intake-validate.js",
+    "test": "npm run document-signals:validate && npm run drive-source-packs:validate && npm run x-intake:validate"
   },
   "dependencies": {
     "axios": "^1.7.2",
