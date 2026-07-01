@@ -4,9 +4,12 @@ const path = require("path");
 const { spawnSync } = require("child_process");
 const {
   ALLOWED_CATEGORIES,
+  ALLOWED_INTAKE_MODES,
   ALLOWED_ROUTES,
+  CLASSIFICATION_VERSION,
   DEFAULT_FIXTURE_PATH,
   FORBIDDEN_OUTPUT_FIELDS,
+  ROUTE_VERSION,
   runManualXIntakeDryRun,
 } = require("../lib/sources/xIntelligenceIntake");
 
@@ -24,9 +27,22 @@ const FORBIDDEN_RUNTIME_PATTERNS = [
 
 const REQUIRED_SIGNAL_FIELDS = [
   "signal_id",
+  "intake_mode",
+  "source_item_id",
+  "source_post_id",
   "source_platform",
   "source_url",
+  "normalized_source_url",
+  "source_author_handle",
   "author_handle",
+  "source_created_at",
+  "bookmarked_at",
+  "imported_at",
+  "import_batch_id",
+  "source_folder",
+  "dedupe_key",
+  "content_hash",
+  "prior_seen",
   "captured_at",
   "raw_text",
   "user_note",
@@ -40,7 +56,19 @@ const REQUIRED_SIGNAL_FIELDS = [
   "can_directly_trade",
   "requires_human_review",
   "created_at",
+  "routed_at",
+  "route_version",
+  "classification_version",
   "safety_flags",
+];
+
+const OPTIONAL_SIGNAL_FIELDS = [
+  "source_post_id",
+  "source_url",
+  "normalized_source_url",
+  "source_created_at",
+  "bookmarked_at",
+  "source_folder",
 ];
 
 const REQUIRED_SAMPLE_CATEGORIES = [
@@ -48,10 +76,9 @@ const REQUIRED_SAMPLE_CATEGORIES = [
   "startup_to_watch",
   "business_opportunity",
   "content_idea",
-  "learning_resource",
+  "general_intelligence",
   "company_news",
   "equity_research",
-  "macro",
   "earnings_catalyst",
   "noise",
 ];
@@ -67,9 +94,17 @@ function main() {
   assert.strictEqual(output.mode, "manual_fixture_dry_run");
   assert.strictEqual(output.validation.passed, true, JSON.stringify(output.validation.errors));
   assert.strictEqual(output.summary.total_records_processed, fixture.items.length);
+  assert.ok(output.summary.count_by_intake_mode.historical_backfill > 0, "must include historical backfill records");
+  assert.ok(output.summary.count_by_intake_mode.daily_incremental > 0, "must include daily incremental records");
+  assert.ok(output.summary.count_by_intake_mode.manual_fixture > 0, "must include manual fixture records");
+  assert.ok(output.summary.duplicate_count > 0, "must include duplicate examples");
+  assert.ok(Array.isArray(output.summary.top_routed_items_by_priority), "must include top routed items");
+  assert.ok(output.summary.top_routed_items_by_priority.length > 0, "top routed items should not be empty");
   assertSafetyFlags(output.safety);
   assertSignals(output.signals);
   assertRequiredSampleCategories(output.signals);
+  assertRequiredRoutes(output.signals);
+  assertDedupeBehavior(output.signals);
   assertNoRuntimeNetworkPaths();
   assertDryRunCommand();
 
@@ -100,21 +135,57 @@ function assertSignals(signals) {
   for (const [index, signal] of signals.entries()) {
     for (const field of REQUIRED_SIGNAL_FIELDS) {
       assert.notStrictEqual(signal[field], undefined, `signals[${index}] missing ${field}`);
-      assert.notStrictEqual(signal[field], null, `signals[${index}] missing ${field}`);
+      if (!OPTIONAL_SIGNAL_FIELDS.includes(field)) {
+        assert.notStrictEqual(signal[field], null, `signals[${index}] missing ${field}`);
+      }
     }
 
+    assert.ok(ALLOWED_INTAKE_MODES.includes(signal.intake_mode), `signals[${index}] unsupported intake_mode`);
     assert.ok(ALLOWED_CATEGORIES.includes(signal.category), `signals[${index}] unsupported category`);
     assert.ok(ALLOWED_ROUTES.includes(signal.route), `signals[${index}] unsupported route`);
     assert.strictEqual(signal.allowed_action, "research_only", `signals[${index}] must be research_only`);
     assert.strictEqual(signal.can_directly_trade, false, `signals[${index}] must not directly trade`);
     assert.strictEqual(signal.requires_human_review, true, `signals[${index}] must require human review`);
+    assert.strictEqual(signal.route_version, ROUTE_VERSION, `signals[${index}] route_version mismatch`);
+    assert.strictEqual(signal.classification_version, CLASSIFICATION_VERSION, `signals[${index}] classification_version mismatch`);
     assert.ok(Array.isArray(signal.detected_tickers), `signals[${index}] detected_tickers must be an array`);
     assert.ok(Array.isArray(signal.safety_flags), `signals[${index}] safety_flags must be an array`);
     assert.notStrictEqual(signal.route, "portfolio_action", `signals[${index}] must not route to portfolio_action`);
+    assert.ok(signal.dedupe_key.startsWith("post:") || signal.dedupe_key.startsWith("url:") || signal.dedupe_key.startsWith("content:"), `signals[${index}] dedupe_key must have a known strategy`);
+
+    if (signal.source_post_id) {
+      assert.strictEqual(signal.dedupe_key, `post:${signal.source_post_id}`, `signals[${index}] must prefer source_post_id for dedupe`);
+    }
 
     for (const field of FORBIDDEN_OUTPUT_FIELDS) {
       assert.strictEqual(signal[field], undefined, `signals[${index}] includes forbidden field ${field}`);
     }
+  }
+}
+
+function assertRequiredRoutes(signals) {
+  const routes = new Set(signals.map((signal) => signal.route));
+  for (const route of [
+    "agent_workflow_upgrade_queue",
+    "ai_tool_or_workflow_queue",
+    "skill_or_research_doc_upgrade_queue",
+    "portfolio_research_queue",
+    "business_opportunity_queue",
+    "content_idea_queue",
+    "ignore_noise",
+  ]) {
+    assert.ok(routes.has(route), `sample output missing route ${route}`);
+  }
+}
+
+function assertDedupeBehavior(signals) {
+  const duplicates = signals.filter((signal) => signal.prior_seen);
+  assert.ok(duplicates.length > 0, "sample output should include at least one duplicate");
+
+  for (const duplicate of duplicates) {
+    assert.strictEqual(duplicate.route, "ignore_noise", "duplicates must route to ignore_noise");
+    assert.strictEqual(duplicate.duplicate_reason, "duplicate", "duplicates must include duplicate reason");
+    assert.ok(duplicate.safety_flags.includes("duplicate_ignored"), "duplicates must include duplicate_ignored safety flag");
   }
 }
 

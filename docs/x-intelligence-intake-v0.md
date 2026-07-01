@@ -410,7 +410,35 @@ Every normalized signal must remain:
 - `can_directly_trade: false`
 - `requires_human_review: true`
 
+The dry-run schema also anticipates two future intake patterns:
+
+- `historical_backfill`: older bookmarked items imported in bulk, potentially thousands at a time.
+- `daily_incremental`: new bookmarks captured after the initial backfill.
+
+Current fixtures include source identity and dedupe metadata such as `source_item_id`, `source_post_id`, `source_url`, `source_author_handle`, `source_created_at`, `bookmarked_at`, `imported_at`, `import_batch_id`, `source_folder`, `dedupe_key`, `content_hash`, `prior_seen`, `routed_at`, `route_version`, and `classification_version`.
+
+Deduplication is deterministic:
+
+- Prefer `source_post_id` when present.
+- Else use the normalized `source_url`.
+- Else use `content_hash` from text, author, and date.
+- Duplicate fixture items are marked `prior_seen: true` and routed to `ignore_noise` with `duplicate_reason: "duplicate"`.
+
 Allowed outputs are research tasks, watchlist candidates, daily report notes, document follow-ups, business opportunity items, content ideas, learning resources, or noise labels. X/social signals still cannot directly create BUY, SELL, or HOLD recommendations, portfolio trades, target weights, broker actions, or execution instructions.
+
+Manual intake routes include:
+
+- `portfolio_research_queue`
+- `watchlist_candidate`
+- `daily_report_note`
+- `document_signal_followup`
+- `business_opportunity_queue`
+- `content_idea_queue`
+- `learning_resource_queue`
+- `agent_workflow_upgrade_queue`
+- `ai_tool_or_workflow_queue`
+- `skill_or_research_doc_upgrade_queue`
+- `ignore_noise`
 
 Future versions may add bookmark sync, deduplication, source scoring, daily cadence, and persistent queues, but those additions must preserve the full review path:
 

@@ -23,7 +23,11 @@ function printSummary(output) {
   console.log(`Mode: ${output.mode}`);
   console.log(`Fixture: ${output.fixture_name} (${output.fixture_version})`);
   console.log(`Total records processed: ${output.summary.total_records_processed}`);
+  console.log(`Duplicate count: ${output.summary.duplicate_count}`);
   console.log(`Safety status: ${output.summary.safety_status}`);
+  console.log("");
+  console.log("Count by intake mode:");
+  printCounts(output.summary.count_by_intake_mode);
   console.log("");
   console.log("Count by category:");
   printCounts(output.summary.count_by_category);
@@ -38,11 +42,21 @@ function printSummary(output) {
   console.log("- portfolio_written: false");
   console.log("- report_written: false");
   console.log("");
+  console.log("Top routed items by priority:");
+  for (const item of output.summary.top_routed_items_by_priority) {
+    const tickers = item.detected_tickers.length > 0 ? item.detected_tickers.join(",") : "none";
+    console.log(`- ${item.priority} | ${item.category} | ${item.route} | ${item.signal_id} | tickers: ${tickers}`);
+  }
+  console.log("");
   console.log("Normalized signals:");
 
   for (const signal of output.signals) {
     const tickers = signal.detected_tickers.length > 0 ? signal.detected_tickers.join(",") : "none";
     console.log(`- ${signal.signal_id}`);
+    console.log(`  intake_mode: ${signal.intake_mode}`);
+    console.log(`  source_item_id: ${signal.source_item_id}`);
+    console.log(`  dedupe_key: ${signal.dedupe_key}`);
+    console.log(`  prior_seen: ${signal.prior_seen}`);
     console.log(`  category: ${signal.category}`);
     console.log(`  route: ${signal.route}`);
     console.log(`  priority: ${signal.priority}`);
