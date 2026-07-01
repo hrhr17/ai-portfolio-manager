@@ -4,7 +4,9 @@
 
 The Daily Investment Committee dry-run orchestrator creates one safe daily packet from existing fixture-only modules.
 
-It is meant to be the first operating loop for the AI Portfolio Manager: gather local signals, summarize module status, run deterministic safety checks, and show Henry what needs human review.
+It is meant to be the first local operating loop for the AI Portfolio Manager: gather fixture-only signals, summarize module status, run deterministic safety checks, and show Henry what needs human review.
+
+This version is local/CLI-first. It is not scheduled by Vercel in this PR.
 
 ## What It Does
 
@@ -58,9 +60,11 @@ The route returns `401` when `CRON_SECRET` is missing or the header does not exa
 
 The route is dry-run only. It does not write to Google Drive, a portfolio ledger, a report store, or production storage.
 
-## Cron
+## Scheduling
 
-`vercel.json` schedules `/api/daily-dry-run` at `13:00 UTC` daily. This approximates 8:00 AM Chicago time during daylight time.
+`/api/daily-dry-run` is not scheduled by `vercel.json` in this PR.
+
+Scheduling can be considered in a future PR after explicit approval and a separate safety review.
 
 The existing `/api/smart-money-analyst` cron remains unchanged.
 

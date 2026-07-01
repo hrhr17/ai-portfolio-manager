@@ -49,7 +49,6 @@ module.exports = async function handler(req, res) {
     },
     cron: {
       path: "/api/smart-money-analyst",
-      dryRunPath: "/api/daily-dry-run",
       note: "Existing Vercel cron path delegates to /api/daily-investment-committee.",
     },
     environment: {

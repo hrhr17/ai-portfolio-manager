@@ -69,11 +69,25 @@ function assertPacketShape(packet) {
   assert.ok(Array.isArray(packet.modules_run) && packet.modules_run.length >= 5, "expected all safe modules to run");
   assert.ok(Array.isArray(packet.next_recommended_human_actions), "next human actions must be an array");
 
-  assert.strictEqual(packet.x_intake_summary.total_records_processed, 12, "X fixture should process 12 records");
+  assert.strictEqual(packet.x_intake_summary.total_records_processed, 21, "X fixture should process 21 records");
   assert.strictEqual(packet.x_intake_summary.duplicate_count, 1, "X fixture should include one duplicate");
   assert.ok(packet.x_intake_summary.count_by_intake_mode.historical_backfill > 0, "missing historical backfill count");
   assert.ok(packet.x_intake_summary.count_by_intake_mode.daily_incremental > 0, "missing daily incremental count");
   assert.ok(packet.x_intake_summary.top_routed_items_by_priority.length > 0, "missing top routed items");
+
+  for (const category of [
+    "ai_infrastructure",
+    "semiconductors",
+    "data_centers_power",
+    "nuclear_energy",
+    "defense_tech",
+    "robotics",
+    "quantum_frontier_compute",
+    "cybersecurity",
+    "crypto_adjacent_ai_infrastructure",
+  ]) {
+    assert.strictEqual(packet.x_intake_summary.count_by_category[category], 1, `missing X roadmap category ${category}`);
+  }
 
   assert.strictEqual(packet.document_signal_summary.signal_count, 12, "document fixture should produce 12 signals");
   assert.strictEqual(packet.document_signal_summary.google_drive_ingested, false, "must not ingest Google Drive docs");

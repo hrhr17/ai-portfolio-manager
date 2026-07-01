@@ -4,10 +4,6 @@
     {
       "path": "/api/smart-money-analyst",
       "schedule": "0 13 * * *"
-    },
-    {
-      "path": "/api/daily-dry-run",
-      "schedule": "0 13 * * *"
     }
   ],
   "functions": {
