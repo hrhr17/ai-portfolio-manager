@@ -198,6 +198,45 @@ Current extraction output shape:
 
 Next planned step after v0.1: add a reviewed local text extraction fixture that more closely resembles pasted or manually uploaded documents, still without real Google Drive ingestion, binary file parsing, LLM scoring, report writing, or portfolio impact.
 
+## Drive Source-Pack Metadata v0
+
+The Drive source-pack metadata scaffold is a metadata-only bridge toward future real source-pack intake:
+
+```text
+Google Drive folder or known file id -> metadata-only listing -> source-pack manifest object -> validation -> dry-run JSON stdout
+```
+
+Fixture mode:
+
+```text
+npm run --silent drive-source-packs:metadata-dry-run
+```
+
+Validation:
+
+```text
+npm run drive-source-packs:validate
+```
+
+Optional live metadata-only mode, when existing Google Drive env vars are configured:
+
+```text
+npm run --silent drive-source-packs:metadata-dry-run -- --live --file-id 1dfP8xXMdw0YRnvvPisnZxdpNftc1_adu
+```
+
+This scaffold records file IDs, names, MIME types, timestamps when available, size when available, and a source-type guess. It explicitly records `content_fetched: false` and `content_parsed: false`.
+
+Current boundaries:
+
+- Does not download file contents.
+- Does not parse the real MSFT FY26 Q3 zip.
+- Does not parse DOCX, XLSX, PPTX, PDF, or zip contents.
+- Does not use LLMs.
+- Does not write reports, portfolio state, Google Drive files, or production storage.
+- Does not add API routes, env vars, cron jobs, or trading paths.
+
+Next planned step after Drive metadata v0: review whether metadata-only discovery should connect to a local manifest reconciliation step before any file content extraction is considered.
+
 ## v0 Planning Decisions
 
 First sample set:
