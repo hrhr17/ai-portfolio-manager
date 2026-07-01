@@ -44,6 +44,7 @@ module.exports = async function handler(req, res) {
       health: "/api/health",
       dailyInvestmentCommittee: "/api/daily-investment-committee",
       dailyDryRun: "/api/daily-dry-run",
+      latestDailyPacket: "/api/latest-daily-packet",
       legacyCronDelegate: "/api/smart-money-analyst",
       xIntake: "/api/x-intake",
     },
