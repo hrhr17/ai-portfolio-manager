@@ -72,14 +72,23 @@ const OPTIONAL_SIGNAL_FIELDS = [
 ];
 
 const REQUIRED_SAMPLE_CATEGORIES = [
+  "ai_infrastructure",
   "ai_tool_or_workflow",
   "startup_to_watch",
   "business_opportunity",
   "content_idea",
+  "crypto_adjacent_ai_infrastructure",
+  "cybersecurity",
+  "data_centers_power",
+  "defense_tech",
   "general_intelligence",
   "company_news",
   "equity_research",
   "earnings_catalyst",
+  "nuclear_energy",
+  "quantum_frontier_compute",
+  "robotics",
+  "semiconductors",
   "noise",
 ];
 
@@ -88,7 +97,7 @@ function main() {
   assert.strictEqual(fixture.synthetic, true, "fixture must be synthetic");
   assert.strictEqual(fixture.manual_fixture_only, true, "fixture must be manual fixture only");
   assert.ok(Array.isArray(fixture.items), "fixture.items must be an array");
-  assert.ok(fixture.items.length >= 8 && fixture.items.length <= 12, "fixture should include 8-12 records");
+  assert.ok(fixture.items.length >= 20 && fixture.items.length <= 30, "fixture should include enough records to cover roadmap categories without becoming large");
 
   const output = runManualXIntakeDryRun(fixture, { fixturePath: DEFAULT_FIXTURE_PATH });
   assert.strictEqual(output.mode, "manual_fixture_dry_run");

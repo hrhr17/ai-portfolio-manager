@@ -221,11 +221,12 @@ Finance categories:
 - `company_news`
 - `watchlist`
 - `ai_infrastructure`
+- `semiconductors`
+- `data_centers_power`
 - `defense_tech`
 - `nuclear_energy`
 - `robotics`
 - `quantum_frontier_compute`
-- `data_centers_power`
 - `cybersecurity`
 - `crypto_adjacent_ai_infrastructure`
 - `noise`
@@ -250,6 +251,9 @@ Allowed routes:
 - `business_opportunity_queue`
 - `content_idea_queue`
 - `learning_resource_queue`
+- `agent_workflow_upgrade_queue`
+- `ai_tool_or_workflow_queue`
+- `skill_or_research_doc_upgrade_queue`
 - `ignore_noise`
 
 ## 10. Portfolio-Specific Guardrails
@@ -424,7 +428,11 @@ Deduplication is deterministic:
 - Else use `content_hash` from text, author, and date.
 - Duplicate fixture items are marked `prior_seen: true` and routed to `ignore_noise` with `duplicate_reason: "duplicate"`.
 
-Allowed outputs are research tasks, watchlist candidates, daily report notes, document follow-ups, business opportunity items, content ideas, learning resources, or noise labels. X/social signals still cannot directly create BUY, SELL, or HOLD recommendations, portfolio trades, target weights, broker actions, or execution instructions.
+The current deterministic taxonomy includes roadmap finance/research themes such as `ai_infrastructure`, `semiconductors`, `data_centers_power`, `nuclear_energy`, `defense_tech`, `robotics`, `quantum_frontier_compute`, `cybersecurity`, and `crypto_adjacent_ai_infrastructure`.
+
+Allowed outputs are research tasks, watchlist candidates, daily report notes, document follow-ups, business opportunity items, content ideas, learning resources, agent/tool/process upgrade queues, or noise labels. X/social signals still cannot directly create BUY, SELL, or HOLD recommendations, portfolio trades, target weights, broker actions, or execution instructions.
+
+Crypto-adjacent infrastructure signals are research-only and must be tied to AI compute, HPC, data centers, power capacity, cooling, or strategic infrastructure. They must not become crypto/token trading signals.
 
 Manual intake routes include:
 
