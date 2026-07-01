@@ -43,11 +43,13 @@ module.exports = async function handler(req, res) {
     routes: {
       health: "/api/health",
       dailyInvestmentCommittee: "/api/daily-investment-committee",
+      dailyDryRun: "/api/daily-dry-run",
       legacyCronDelegate: "/api/smart-money-analyst",
       xIntake: "/api/x-intake",
     },
     cron: {
       path: "/api/smart-money-analyst",
+      dryRunPath: "/api/daily-dry-run",
       note: "Existing Vercel cron path delegates to /api/daily-investment-committee.",
     },
     environment: {
